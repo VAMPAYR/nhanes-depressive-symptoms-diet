@@ -1,0 +1,9 @@
+"stage_id","group","PHQ_subset","n","weight_denominator","psus","strata","domain_df","parent_n","parent_psus","parent_strata","parent_df"
+"PHQ_order","First recall positive","All scores",1600,20800997.1502568,121,59,62,28845,121,59,62
+"PHQ_order","First recall positive",">=10",111,1284749.21900316,69,44,25,28845,121,59,62
+"PHQ_order","Second recall positive","All scores",720,12865572.0986813,120,59,61,28845,121,59,62
+"PHQ_order","Second recall positive",">=10",53,940361.715025086,43,35,8,28845,121,59,62
+"PHQ_sex","Male","All scores",1280,18489384.0336264,121,59,62,28845,121,59,62
+"PHQ_sex","Male",">=10",78,1090362.95384803,58,42,16,28845,121,59,62
+"PHQ_sex","Female","All scores",1040,15177185.2153117,121,59,62,28845,121,59,62
+"PHQ_sex","Female",">=10",86,1134747.98018021,57,43,14,28845,121,59,62

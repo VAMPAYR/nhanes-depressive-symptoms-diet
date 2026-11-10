@@ -1,0 +1,7 @@
+Measure,Released fields,Definition
+Person and cycle,SEQN and release,Combine participant identifier with survey release before pooling; retain food lines within person and day.
+Food identity,DR1ILINE/DR2ILINE; DR1IFDCD/DR2IFDCD; DRXFDCD,Match food descriptions by cycle. Beverage codes 93100000–93599999 except cooking wine 93401300 require positive item ethanol.
+Item energy and ethanol,DR1IKCAL/DR2IKCAL; DR1IALCO/DR2IALCO,Kilocalories and grams in each recalled food line.
+Recorded additions,DR1CCMNM/DR2CCMNM; DR1CCMTX/DR2CCMTX,Positive shared combination number and beverage-with-additions type 1 on both records; exclude already identified beverage items.
+Daily controls and interval,DR1TKCAL/DR2TKCAL; DR1TALCO/DR2TALCO; DR1DRSTZ/DR2DRSTZ; DR1DAY/DR2DAY; DR1DBIH/DR2DBIH,Check reliable status and item-to-total agreement. Interval is second minus first intake-day offset. DRDINT counts recalls and is not elapsed time.
+Symptoms and survey design,DPQ010–DPQ090; RIDAGEYR; RIAGENDR; WTDR2D; SDMVSTRA; SDMVPSU,Complete nine valid symptom items; public age and sex; two-day weight divided by 4; released strata and nested sampling units.

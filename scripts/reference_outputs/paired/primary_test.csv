@@ -1,0 +1,2 @@
+"test","statistic","numerator_df","denominator_df","p_value","method"
+"Primary PHQ trend coefficient equals zero",0.00385205930820337,1,48,0.950768824174338,"Same-fit survey Wald F; matching t confidence interval"

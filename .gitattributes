@@ -1,0 +1,2 @@
+# SHA-256 manifests bind exact bytes. Do not convert line endings on checkout.
+* -text

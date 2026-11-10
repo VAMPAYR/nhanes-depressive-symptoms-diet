@@ -1,0 +1,3 @@
+"response","n","weighted_total","weighted_fraction","absent_dpq_record_n","present_all_invalid_n","all_nine_NA_n","partial_n","any_refused_n","any_unknown_n"
+"complete",2320,33666569.2489381,0.964178172294105,0,0,0,0,0,0
+"incomplete",104,1250804.13323877,0.0358218277058956,0,100,100,4,2,1

@@ -1,0 +1,3 @@
+"stage_id","term","statistic","numerator_df","denominator_df","p_value","method","p_Holm_two_interactions"
+"PHQ_order","pe_phq5:pd_order_sign",3.25114236686744,1,47,0.0777866815423459,"One-df survey Wald F; stored svyglm residual df",0.155573363084692
+"PHQ_sex","pe_phq5:pe_sex2",0.983848491386427,1,47,0.326329807177193,"One-df survey Wald F; stored svyglm residual df",0.326329807177193

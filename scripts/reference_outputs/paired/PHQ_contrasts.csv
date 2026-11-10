@@ -1,0 +1,7 @@
+"contrast_id","estimate","se","df","lower","upper","scale","stage_id"
+"PHQ5_minus0",2.63437821740836,42.4454990522456,48,-82.7080174817431,87.9767739165598,"kcal: beverage-positive day minus exact beverage-zero day","primary"
+"PHQ10_minus0",5.26875643481672,84.8909981044912,48,-165.416034963486,175.95354783312,"kcal: beverage-positive day minus exact beverage-zero day","primary"
+"PHQ5_minus0",-1.15054293828938,39.8589109621297,48,-81.2922547197969,78.9911688432181,"kcal: beverage-positive day minus exact beverage-zero day","all_intervals"
+"PHQ10_minus0",-2.30108587657875,79.7178219242595,48,-162.584509439594,157.982337686436,"kcal: beverage-positive day minus exact beverage-zero day","all_intervals"
+"PHQ5_minus0",40.4129437261595,74.5008162022001,47,-109.463366533741,190.28925398606,"kcal: beverage-positive day minus exact beverage-zero day","quadratic"
+"PHQ10_minus0",42.2337057676944,99.7292812378552,47,-158.395729703649,242.863141239038,"kcal: beverage-positive day minus exact beverage-zero day","quadratic"

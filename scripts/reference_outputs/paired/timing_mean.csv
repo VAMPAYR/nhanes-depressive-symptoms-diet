@@ -1,0 +1,2 @@
+"variable","estimate","se","ci_lower","ci_upper","ci_status","n","weight_denominator","psus","strata","domain_df","parent_n","parent_psus","parent_strata","parent_df"
+"pd_gap_days",9.10170465283737,0.62557682251897,7.8511944029057,10.352214902769,"reported",2659,39447190.330185,121,59,62,28845,121,59,62

@@ -1,0 +1,14 @@
+/data/*
+!/data/README.md
+/outputs/
+/.library/
+/.Rhistory
+/.RData
+/.Ruserdata
+/.Rproj.user/
+*.log
+*.tmp
+*.rds
+*.RDS
+*.xpt
+*.XPT

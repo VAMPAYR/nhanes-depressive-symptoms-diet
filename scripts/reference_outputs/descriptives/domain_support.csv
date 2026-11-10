@@ -1,0 +1,7 @@
+"domain","n","weight_denominator","psus","strata","domain_df","parent_n","parent_psus","parent_strata","parent_df"
+"full_two_day_weight_parent",28845,313779665.497641,121,59,62,28845,121,59,62
+"primary_3_10",2320,33666569.2489381,121,59,62,28845,121,59,62
+"all_intervals",2701,39859185.8907024,121,59,62,28845,121,59,62
+"adult_two_day_weight_parent",17131,231590852.718659,121,59,62,28845,121,59,62
+"adult_complete_PHQ",16218,221421509.228826,121,59,62,28845,121,59,62
+"adult_PHQ_unavailable",913,10169343.4898324,121,59,62,28845,121,59,62
