@@ -1,5 +1,16 @@
 # Reproduction validation
 
+## Version 1.1.0: adjusted RQ1 energy partition (20 November 2026)
+
+- Adds a fourth stage, `rq1_adjusted/`: five survey-weighted models of the paired energy components (ethanol, beverage-energy remainder, linked additions, other foods and beverages, total) on the recall-order sign and six weekday-indicator differences in the primary 3–10-day domain (n = 2,320). The intercept is the drinking-day difference at equal recall-order weighting with both recalls on the same weekday. Specified after all earlier results were known and before these models were fitted; post hoc sensitivity analysis.
+- Native Windows, R 4.5.1, pinned dependency versions. The stage's three synthetic tests passed.
+- The stage rebuilt the paired data from the 28 verified raw XPORT files. Before fitting, unadjusted means reproduced Table 2 within 4e-13 kcal (gate tolerance 1e-6).
+- The adjusted components summed to the adjusted total (gap about 1e-12 kcal). Results agreed within 5e-13 with the first computation and matched the two new fixed references at tolerance 1e-9.
+- The earlier three stages and their code are unchanged. `Rscript RUN_ALL.R --verify` matched all 50 fixed reference files (48 earlier and 2 new), and the reference-verifier fixtures passed.
+- The new stage was run in the existing validated checkout, whose earlier-stage outputs came from the v1.0.0 fresh run below. A complete four-stage rerun in a new empty checkout was not repeated for v1.1.0.
+
+## Version 1.0.0
+
 Validation date: 9 November 2026.
 
 ## Completed checks

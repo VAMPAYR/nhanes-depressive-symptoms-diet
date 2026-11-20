@@ -26,12 +26,12 @@ local({
   public_check_manifest(root)
   rscript <- file.path(R.home("bin"), if (.Platform$OS.type == "windows") "Rscript.exe" else "Rscript")
   if (!file.exists(rscript)) stop("Rscript is missing from this R installation.", call. = FALSE)
-  for (stage in c("scripts/run.R", "scripts/run_secondary.R", "strengthening/run.R")) {
+  for (stage in c("scripts/run.R", "scripts/run_secondary.R", "strengthening/run.R", "rq1_adjusted/run.R")) {
     message("Executing ", stage, " ", mode)
     status <- system2(rscript, c("--vanilla", shQuote(file.path(root, stage)), mode))
     if (status != 0L) stop(stage, " stopped with exit status ", status, ". Completed checkpoints remain local.", call. = FALSE)
   }
-  if (mode != "--preflight") public_compare(root)
+  if (mode != "--preflight") public_compare(root, stages = c("original", "secondary", "strengthening", "rq1_adjusted"))
   message(if (mode == "--preflight") "Preflight complete. No observed outcome models were fitted." else
-    "All three stages completed and matched the fixed manuscript reference values.")
+    "All four stages completed and matched the fixed manuscript reference values.")
 })

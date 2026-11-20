@@ -1,6 +1,6 @@
 # Depressive symptoms and dietary energy on drinking and comparison days
 
-This repository reproduces the NHANES 2011–2018 analyses for **Depressive symptoms and dietary energy on days with and without alcoholic beverages in NHANES 2011 to 2018**. It rebuilds the data from official public XPORT files, fits all manuscript models, produces the main and supplementary numerical results and Figure 1, and compares the results with fixed aggregate reference values.
+This repository reproduces the NHANES 2011–2018 analyses for **Depressive symptoms, alcohol use, and dietary energy intake: evidence from NHANES** (earlier working title: *Depressive symptoms and dietary energy on days with and without alcoholic beverages in NHANES 2011 to 2018*). It rebuilds the data from official public XPORT files, fits all manuscript models, produces the main and supplementary numerical results and Figure 1, and compares the results with fixed aggregate reference values.
 
 The primary analysis includes 2,320 adults who reported an alcoholic beverage on exactly one of two reliable dietary recalls 3–10 days apart. The outcome removes complete alcoholic-beverage items and their linked additions from total energy. The PHQ-9 association is observational and imprecise; the analysis does not establish causation or equivalence.
 
@@ -35,7 +35,7 @@ For RStudio, open an RStudio project in this repository or set its working direc
 source("RUN_ALL.R")
 ```
 
-The sourced entry point uses the same three-stage `--run` workflow. No separate manual ordering or path editing is required.
+The sourced entry point uses the same four-stage `--run` workflow. No separate manual ordering or path editing is required.
 
 ## What each command does
 
@@ -45,9 +45,9 @@ The sourced entry point uses the same three-stage `--run` workflow. No separate 
 | `Rscript scripts/install_dependencies.R --isolated` | Excludes the existing user library and installs/checks the pinned dependencies using this checkout's library and R's bundled packages. Archived compiled versions can require Rtools45. |
 | `Rscript scripts/download_data.R --download` | Downloads missing official files and checks every SHA-256 checksum. Existing correct files are reused; an existing changed file causes an error. |
 | `Rscript scripts/download_data.R --verify` | Checks the 32 local inputs without downloading. HTML/error responses cannot pass the expected hashes. |
-| `Rscript RUN_ALL.R --preflight` | Checks R/packages, code/reference identities and input hashes; runs seven synthetic sensitivity tests. It fits no observed participant-outcome model. |
-| `Rscript RUN_ALL.R --run` | Rebuilds all three analysis stages from raw files when outputs are empty. If a stage is already complete, verifies its recorded identity and outputs rather than silently refitting. |
-| `Rscript RUN_ALL.R --verify` | Verifies completed local output hashes and compares 48 fixed aggregate reference files, including full coefficient covariance matrices for the original three models. It is not a fresh analysis. |
+| `Rscript RUN_ALL.R --preflight` | Checks R/packages, code/reference identities and input hashes; runs ten synthetic tests (seven for the sensitivity stage, three for the adjusted RQ1 stage). It fits no observed participant-outcome model. |
+| `Rscript RUN_ALL.R --run` | Rebuilds all four analysis stages from raw files when outputs are empty. If a stage is already complete, verifies its recorded identity and outputs rather than silently refitting. |
+| `Rscript RUN_ALL.R --verify` | Verifies completed local output hashes and compares 50 fixed aggregate reference files, including full coefficient covariance matrices for the original three models. It is not a fresh analysis. |
 | `Rscript scripts/test_validation.R` | Tests that the reference verifier rejects missing files, changed numerical values and renamed columns, using synthetic temporary fixtures only. |
 
 To conduct another **fresh** reproduction, use a new checkout with empty `outputs/`. Reuse the verified `data/` files by copying them into the same relative layout if desired. Do not delete another person's active run or edit expected values to make a failed comparison pass. The original and secondary stages can resume valid interrupted checkpoints. An incomplete sensitivity-stage output directory is preserved for diagnosis; start that stage in a new empty checkout after resolving its cause.
@@ -71,7 +71,7 @@ The repository does not redistribute raw data, participant records, local model 
 
 | File | Responsibility |
 | --- | --- |
-| `RUN_ALL.R` | Runs the original, secondary and additional sensitivity stages in order, then validates all fixed references. |
+| `RUN_ALL.R` | Runs the original, secondary, additional sensitivity and adjusted RQ1 stages in order, then validates all fixed references. |
 | `scripts/install_dependencies.R` | Installs/checks pinned R dependencies. |
 | `scripts/download_data.R` | Retrieves/verifies the 32 public inputs. |
 | `scripts/config.R` | Relative data, output and optional library locations; fixed R and direct dependency versions. |
@@ -93,8 +93,10 @@ The repository does not redistribute raw data, participant records, local model 
 | `strengthening/config.R` | Fixed eligibility counts and operational response-weighting thresholds. |
 | `scripts/SECONDARY_SPEC.md` | Specification of the three earlier exploratory models. |
 | `strengthening/PLAN.md` | Scientific transcription of the later fixed exploratory specification and interpretation boundaries. |
+| `rq1_adjusted/run.R` | Fourth stage (v1.1.0): five survey-weighted models of the paired energy components on recall order and weekday differences; reproduces Table 2 as a gate before fitting. |
+| `rq1_adjusted/SPEC.md` | Transcription of the fourth stage's specification, fixed before fitting. |
 
-`scripts/active_code_manifest.csv`, `scripts/secondary_code_manifest.csv`, and `distribution_manifest.csv` bind the supplied implementation. `reference_manifest.csv` identifies all 48 expected reference files and their generated counterparts. These checks intentionally fail after a scientific code or reference change; investigate and document such changes before creating a distinct version. The reproduction commands never rewrite the expected references.
+`scripts/active_code_manifest.csv`, `scripts/secondary_code_manifest.csv`, and `distribution_manifest.csv` bind the supplied implementation. `reference_manifest.csv` identifies all 50 expected reference files and their generated counterparts. These checks intentionally fail after a scientific code or reference change; investigate and document such changes before creating a distinct version. The reproduction commands never rewrite the expected references.
 
 The repository's `.gitattributes` disables automatic line-ending conversion because the SHA-256 manifests bind exact file bytes. Keep that file when cloning or copying the package, including on Windows with `core.autocrlf=true`.
 
@@ -116,6 +118,7 @@ All paths below are relative to `outputs/` unless marked as a static repository 
 | Supplementary Table S3 | `strengthening/results/C_context_comparison.csv`, `D_response_comparison.csv`, and `original_Taylor_comparisons.csv`. |
 | Supplementary Table S4 | `strengthening/results/A_summary.csv`; all individual and stratum deletion results are generated locally as `A_cases.csv` and `A_strata.csv`. |
 | Supplementary Table S5 | `strengthening/results/B_description.csv`, supported by `B_flow.csv` and `B_item_patterns.csv`. |
+| Adjusted RQ1 energy partition (Sections 3.5, 4.2 and 5.1–5.3) | `rq1_adjusted/results/rq1_adjusted_results.csv` and `rq1_adjusted_summary.json`. |
 
 Narrative sample flow comes from `original/flow.csv`, `analysis_domain_flow.csv`, and `descriptives/selection_age_sex.csv`. Interval composition comes from `timing_distribution.csv` and `timing_mean.csv`. The primary trend test is in `primary_test.csv`. Response-probability, weight and replicate checks are in `strengthening/results/D_response_diagnostics.json`, `D_weight_diagnostics.csv`, and `D_replicate_diagnostics.csv`.
 
@@ -123,9 +126,9 @@ The package reproduces the statistical analyses, full-precision tables and plot.
 
 ## Scientific scope and provenance
 
-The release was tested on Windows with R 4.5.1 and the pinned package versions. A fresh three-stage analysis rebuilt all outputs from verified raw inputs and matched all 48 fixed reference files. The seven sensitivity tests and four reference-verifier fixture checks passed. The default dependency check passed against installed pinned versions. An isolated installation successfully retrieved the pinned Rcpp source and stopped because the test machine lacked Rtools45; a complete isolated dependency installation has therefore not been demonstrated on that machine. Install the compiler prerequisite before using archived compiled packages. No alternate dependency version was accepted.
+Release v1.0.0 was tested on Windows with R 4.5.1 and the pinned package versions. A fresh three-stage analysis rebuilt all outputs from verified raw inputs and matched all 48 fixed reference files. The seven sensitivity tests and four reference-verifier fixture checks passed. The default dependency check passed against installed pinned versions. An isolated installation successfully retrieved the pinned Rcpp source and stopped because the test machine lacked Rtools45; a complete isolated dependency installation has therefore not been demonstrated on that machine. Install the compiler prerequisite before using archived compiled packages. No alternate dependency version was accepted.
 
-The first three models estimate a common PHQ slope or a quadratic PHQ relationship. The next three were specified after the original results were known. The later influence, incomplete-response, additional-adjustment and response-weighted checks were specified after all six earlier results were known and before their own estimates were inspected. All additions remain exploratory. Neither a later code release nor a successful rerun changes that timing.
+The first three models estimate a common PHQ slope or a quadratic PHQ relationship. The next three were specified after the original results were known. The later influence, incomplete-response, additional-adjustment and response-weighted checks were specified after all six earlier results were known and before their own estimates were inspected. The adjusted RQ1 energy partition (v1.1.0) was specified after an independent review of the manuscript, after all earlier results were known and before its own models were fitted; it is a post hoc sensitivity analysis. All additions remain exploratory. Neither a later code release nor a successful rerun changes that timing. See `VALIDATION.md` for the v1.1.0 checks.
 
 The scientific analysis modules and synthetic tests retain the original manuscript implementation. Distribution changes concern generic paths, dependency/data setup, reference checking and removal of machine-bound history. Freshly generated original-model checkpoints support the later coefficient/covariance reconstruction checks. Independently saved aggregate references additionally verify the original fits, all later comparisons and response diagnostics. The fixed sensitivity rules still stop inference on failed convergence, rank, replication or response-probability checks; no alternative model is selected automatically.
 
